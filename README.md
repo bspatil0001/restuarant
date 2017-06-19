@@ -2,11 +2,11 @@
 
 #Fallow the steps
 
-#for  node modules
+#for  node modules :
 npm install --save
 
-#In mongodb
+#go to mongo shell : 
 use restuarant
 
-#run the code in terminal
+#run the code in terminal :
 npm serve
