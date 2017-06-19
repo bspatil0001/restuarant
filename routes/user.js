@@ -16,7 +16,7 @@ router.post('/booktable',
 );
 
 router.delete('/:id',
-  // tableMdlr.checkAvailability,
+  tableMdlr.canDeleteBooking,
   userCtrl.Remove
 )
 

@@ -56,7 +56,7 @@ exports.QueryTable = function(req, res, next){
 
   async.parallel({
     table: function(cb){
-      tableSchema.QueryData(query, sort, start, limit, cb)
+      tableSchema.QueryData(query, sort, cb)
     },
     count: function(cb){
       tableSchema.count(cb)

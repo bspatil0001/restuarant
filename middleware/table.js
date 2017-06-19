@@ -1,8 +1,6 @@
 var tableSchema = SCHEMA_TABLE;
 var bookingSchema = SCHEMA_BOOKING;
 
-
-
 exports.checkTableAvailability = function(req, res, next) {
   var body = req.body;
 
@@ -30,10 +28,25 @@ exports.checkAvailability = function(req, res, next) {
     "table": body.table
   };
   console.log(where);
+  console.log("body", body);
   bookingSchema.count(where, function(err, count) {
+    console.log(count);
     if (count > 0) {
       return next(new Error("This table not available on selected time"))
     }
     return next();
   });
 };
+
+
+exports.canDeleteBooking = function(req, res, next){
+  var id = req.params.id;
+  bookingSchema.find({_id:id}, function(err, data) {
+    if(data.start_time > new Date()){
+      return next();
+    }
+    else{
+      return next(new Error("You cant served bookings."))
+    }
+  });
+}

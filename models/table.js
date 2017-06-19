@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var tableSchema = new Schema({
   restuarant: {
       type: Schema.Types.ObjectId,
-      ref: "Restuarant"
+      ref: "Restuarant",
+      required: true
   },
   capacity: {
     type: Number,
@@ -22,10 +23,10 @@ var tableSchema = new Schema({
   }
 });
 
-tableSchema.statics.QueryTable = function(query, where, sort, start, limit, cb){
+tableSchema.statics.QueryTable = function(query, sort, cb){
   var qry = this.find(query);
-  // if (sort)
-  //     qry.sort(sort);
+  if (sort)
+      qry.sort(sort);
   qry.exec(cb || console.log);
 }
 
